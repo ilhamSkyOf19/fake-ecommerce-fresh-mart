@@ -30,19 +30,14 @@ Website ini menyuguhkan desain estetika dengan **efek parallax**, memperkuat cit
 
 ## 🧩 Fitur Utama
 
-- ✅ Halaman utama dengan efek **Parallax Scrolling**  
-- ✅ Modular API Backend via Next.js + Express  
-- ✅ Pengelolaan data terstruktur dengan Prisma ORM  
-- ✅ Integrasi database MongoDB Atlas  
-- ✅ Sistem login & register (dalam pengembangan)  
-- ✅ Responsif dan mendukung semua perangkat (dalam pengembangan)
+- Dalam Pengembangan
 
 ---
 
 ## 🔧 Status Proyek
 
 🛠️ **Masih dalam tahap aktif pengembangan.**  
-Tanggal dimulai: **11 Juli 2025**  
+Tanggal dimulai: **17 Juli 2025**  
 Perkembangan dilakukan secara bertahap dengan fokus pada performa, desain UX, dan skalabilitas.
 
 ---
