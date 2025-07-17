@@ -1,152 +1,141 @@
-import { type FC } from 'react'
+import { useEffect, useRef, useState, type FC } from 'react'
 
 // icons 
-import { MdOutlineLocationOn } from "react-icons/md";
 import { FaHeadset } from "react-icons/fa";
-import { IoIosArrowDown } from "react-icons/io";
 import { FaRegUser } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 // logo 
 import logo from '../../assets/logo/logo.png'
-import Input from '../Input';
 import { Link } from 'react-router';
 
-const Navbar: FC = () => {
-    return (
-        <div className='w-full flex-col flex justify-center items-center bg-white shadow-sm'>
-            {/* content one */}
-            <ContentOne />
+const Navbar = () => {
+    const [showNavbar, setShowNavbar] = useState(true)
+    const [blur, setBlur] = useState(false)
 
-            {/* content two */}
-            <ContentTwo />
-        </div>
-    )
-}
 
-// content one 
-const ContentOne: FC = () => {
-    return (
-        <div className='w-full py-2 flex flex-row justify-between items-center relative after:content-[""] after:w-full after:h-[1.2px] after:bg-slate-300 after:absolute after:bottom-0'>
-            <p className='text-to-small text-slate-700 px-5'>
-                New Offers This Weekend only to <span className='text-primary-matcha'>Get 50%</span> Flate
-            </p>
+    //  show navbar
+    const lastScrollY = useRef(0);
 
-            <div className='flex flex-row justify-end items-center px-5 gap-3'>
-                {/* subtitle  */}
-                <button className=' flex flex-row justify-start items-start gap-0.5 cursor-pointer'>
-                    <p className='text-to-small text-slate-700'>English</p>
-                    <IoIosArrowDown className='text-to-small text-slate-700 pt-[1px] h-full' />
-                </button>
+    useEffect(() => {
 
-                {/* location */}
-                <button className='px-4 flex flex-row justify-start items-start relative before:content-[""] before:absolute before:w-[1px] before:h-[200%] before:-top-2 before:bg-slate-300 before:left-0 before:origin-center after:content-[""] after:absolute after:w-[1px] after:h-[200%] after:-top-2 after:bg-slate-300 after:right-0 after:origin-center gap-1 cursor-pointer'>
-                    <MdOutlineLocationOn className='text-sm text-slate-700' />
-                    <p className='text-to-small text-slate-700 capitalize'>store location</p>
-                </button>
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY; // get current scroll
 
-                {/* customer support */}
-                <button className='flex flex-row justify-start items-center gap-1.5 cursor-pointer'>
-                    <FaHeadset className='text-sm text-slate-700' />
-                    <p className='text-to-small text-slate-700'>(+123) 456-7890</p>
-                </button>
-            </div>
-        </div>
-    )
-}
+            // jika scroll ke atas
+            if (currentScrollY > lastScrollY.current) {
 
-// content two
-const ContentTwo: FC = () => {
-    // const link router 
+                setShowNavbar(true);
+            } else {   // jika scroll ke bawah
+                setShowNavbar(false);
+                if (currentScrollY > 10) {
+                    setBlur(true)
+                } else {
+                    setBlur(false)
+                }
+
+            }
+
+            lastScrollY.current = currentScrollY; // set last scroll 
+        }
+
+        document.addEventListener('scroll', handleScroll) // first mount
+
+        return () => {
+            document.removeEventListener('scroll', handleScroll)
+        }
+    }, [])
+
+
+
+
+
+
+
+    // router 
     const router: string[] = ['home', 'shop', 'page', 'blog', 'shortcode', 'on sale', 'contact']
+
+
     return (
-        <div className='w-full flex flex-row justify-start items-center'>
-            {/* logo */}
-            <div className='flex flex-row justify-center items-center px-14 py-8 relative after:content-[""] after:w-[1px] after:h-full after:bg-slate-300 after:absolute after:right-0'>
-                <img src={logo} alt="logo" className='w-40 ' />
+        <div className={`w-full flex flex-row justify-between items-center py-2.5 fixed top-0 z-50  ${blur ? 'backdrop-blur-sm shadow-md' : 'bg-transparent'} ${showNavbar ? 'translate-y-0' : '-translate-y-full'} transition-all duration-300 ease-in-out `}>
+            <div className='flex flex-row justify-center items-center px-7'>
+
+                <img src={logo} alt="logo" className='w-24' />
             </div>
 
-            <div className='w-full h-full flex flex-col justify-between items-start px-5 pt-4 gap-2'>
-                <div className=' w-full h-full flex flex-row justify-between items-start'>
-                    <div className='flex-2 flex flex-row justify-center items-center'>
-                        {/* input  */}
-                        <Input />
-
-                    </div>
-
-                    <div className='flex-1 flex flex-row justify-end items-center gap-4'>
-                        {/* login, favorite, cart, total price cart  */}
-                        <ButtonLoginRegister />
-
-                        {/* button favorite and cart  */}
-                        <ButtonFavoriteCart totalItem={2} typeIcon='favorite' />
-                        {/* button favorite and cart  */}
-                        <ButtonFavoriteCart totalItem={2} typeIcon='cart' />
-                    </div>
-                </div>
-                <div className='flex flex-row justify-start items-center gap-4'>
-                    {
-                        router.map((item, index) => (
-                            <LinkRouter key={index} label={item} />
-                        ))
-                    }
-                </div>
+            {/* list router */}
+            <div className='flex flex-row justify-center items-center '>
+                {
+                    router.map((item, index) => (
+                        <Link key={index} to="/" className='mx-2.5 text-xs font-semibold text-slate-600 hover:text-primary-matcha transition-all duration-300 ease-in-out cursor-pointer capitalize'>
+                            {item}
+                        </Link>
+                    ))
+                }
             </div>
+            {/* info */}
+            <div className='flex flex-row justify-end items-center gap-14 px-7'>
+                {/* customer service */}
+                <button className='flex flex-row justify-start items-center gap-2'>
+                    <FaHeadset className='text-primary-matcha text-xl' />
+                    <div className='flex flex-col justify-end items-start'>
+                        <p className='text-to-small'>call us</p>
+                        <p className='text-to-small font-semibold text-primary-matcha'>(+91) 123-456-7890</p>
+                    </div>
+                </button>
+
+                <div className='flex flex-row justify-start items-center gap-5'>
+                    {/* login register */}
+                    <button className='flex flex-row justify-start items-center gap-2'>
+                        <div className='flex flex-row justify-center items-center w-8 h-8 bg-slate-200 rounded-full'>
+                            <FaRegUser className=' text-md' />
+                        </div>
+                        <div className='flex flex-col justify-between items-start'>
+                            <p className='text-to-small font-medium'>Login <span className='text-primary-matcha'>or</span></p>
+                            <p className='text-to-small font-medium'>Register</p>
+                        </div>
+                    </button>
+
+                    {/* favorite */}
+                    <FavoriteCart type='favorite' count={3} />
+                    <FavoriteCart type='cart' count={14} />
+                </div>
+
+
+            </div>
+
         </div>
     )
 }
 
 
-// login register button 
-const ButtonLoginRegister: FC = () => {
-    return (
 
-        <div className='flex flex-row justify-start items-start'>
-            <button className='flex flex-row justify-start items-center gap-2 cursor-pointer'>
-                <div className='p-2 bg-gray-100 rounded-full flex justify-center items-center'>
-                    <FaRegUser className='text-lg text-slate-700 ' />
-                </div>
-                <div className='flex flex-col justify-center items-center'>
-                    <p className='text-to-small text-slate-700 font-semibold'>Login <span className='text-primary-matcha'>or</span></p>
-                    <p className='text-to-small text-slate-700 font-semibold'>Register</p>
-                </div>
-            </button>
-        </div>
-    )
+type FavoriteCartProps = {
+    count: number;
+    type: 'favorite' | 'cart';
 }
 
-
-type CartType = {
-    totalItem: number
-    typeIcon: string
-}
-
-// button favorite and cart 
-const ButtonFavoriteCart: FC<CartType> = ({ totalItem, typeIcon }) => {
-
+// favortie & cart component 
+const FavoriteCart: FC<FavoriteCartProps> = ({ type, count }) => {
     return (
         <button className='flex flex-row justify-center items-center p-1 relative'>
-            <div className='p-2 bg-gray-100 rounded-full flex justify-center items-center relative cursor-pointer'>
-                {typeIcon === 'cart' && <HiOutlineShoppingBag className='text-xl text-slate-700' />}
-                {typeIcon === 'favorite' && <FaRegHeart className='text-lg text-slate-700' />}
+            {/* icon */}
+            <div className='flex flex-row justify-center items-center bg-slate-200 w-8 h-8 rounded-full'>
+                {
+                    type === 'favorite' && <FaRegHeart className='text-black text-md' />
+                }
+                {
+                    type === 'cart' && <HiOutlineShoppingBag className='text-black text-md' />
+                }
             </div>
-            <p className={`text-[0.55rem] font-medium text-white ${typeIcon === 'cart' ? 'bg-primary-matcha' : 'bg-orange-300'} w-4 h-4 rounded-full flex justify-center items-center absolute top-0 right-0`}>{totalItem}</p>
+            {/* count  */}
+            <div className={`flex flex-row justify-center items-center ${type === 'favorite' ? 'bg-orange-300' : 'bg-primary-matcha'} w-4 h-4 rounded-full absolute top-0 right-0 overflow-hidden`}>
+                <p className='text-[0.5rem] font-semibold text-white'>{count}</p>
+            </div>
+
         </button>
     )
 }
 
-type LinkRouterProps = {
-    label: string
-}
-// link router 
-const LinkRouter: FC<LinkRouterProps> = ({ label }) => {
-    return (
-        <div className='px-2 py-1 flex flex-row justify-start items-center'>
-            <Link to='/' className='text-xs text-slate-700 font-semibold hover:text-primary-matcha transition-all duration-300 ease-in-out cursor-pointer capitalize'>
-                {label}
-            </Link>
-        </div>
-    )
-}
 export default Navbar
