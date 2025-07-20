@@ -21,14 +21,13 @@ const Navbar = () => {
     useEffect(() => {
 
         const handleScroll = () => {
-            const currentScrollY = window.scrollY; // get current scroll
+            const currentScrollY = window.scrollY; // get current scroll 
 
-            // jika scroll ke atas
+            // jika scroll ke bawah
             if (currentScrollY > lastScrollY.current) {
-
-                setShowNavbar(true);
-            } else {   // jika scroll ke bawah
                 setShowNavbar(false);
+            } else {   // jika scroll ke atas
+                setShowNavbar(true);
                 if (currentScrollY > 10) {
                     setBlur(true)
                 } else {
@@ -60,15 +59,15 @@ const Navbar = () => {
     return (
         <div className={`w-full flex flex-row justify-between items-center py-2.5 fixed top-0 z-50  ${blur ? 'backdrop-blur-sm shadow-md' : 'bg-transparent'} ${showNavbar ? 'translate-y-0' : '-translate-y-full'} transition-all duration-300 ease-in-out `}>
             <div className='flex flex-row justify-center items-center px-7'>
-
-                <img src={logo} alt="logo" className='w-24' />
+                <h2 className='text-2xl font-bold text-primary-matcha'>E-FM</h2>
+                {/* <img src={logo} alt="logo" className='w-24' /> */}
             </div>
 
             {/* list router */}
-            <div className='flex flex-row justify-center items-center '>
+            <div className='flex flex-row justify-center items-center gap-5'>
                 {
                     router.map((item, index) => (
-                        <Link key={index} to="/" className='mx-2.5 text-xs font-semibold text-slate-600 hover:text-primary-matcha transition-all duration-300 ease-in-out cursor-pointer capitalize'>
+                        <Link key={index} to="/" className='px-1.5 text-xs font-semibold text-white hover:text-primary-matcha transition-all duration-300 ease-in-out cursor-pointer capitalize'>
                             {item}
                         </Link>
                     ))
@@ -80,7 +79,7 @@ const Navbar = () => {
                 <button className='flex flex-row justify-start items-center gap-2'>
                     <FaHeadset className='text-primary-matcha text-xl' />
                     <div className='flex flex-col justify-end items-start'>
-                        <p className='text-to-small'>call us</p>
+                        <p className='text-to-small text-white'>call us</p>
                         <p className='text-to-small font-semibold text-primary-matcha'>(+91) 123-456-7890</p>
                     </div>
                 </button>
@@ -92,8 +91,8 @@ const Navbar = () => {
                             <FaRegUser className=' text-md' />
                         </div>
                         <div className='flex flex-col justify-between items-start'>
-                            <p className='text-to-small font-medium'>Login <span className='text-primary-matcha'>or</span></p>
-                            <p className='text-to-small font-medium'>Register</p>
+                            <p className='text-to-small font-medium text-white'>Login <span className='text-primary-matcha font-semibold'>or</span></p>
+                            <p className='text-to-small font-medium text-white'>Register</p>
                         </div>
                     </button>
 
