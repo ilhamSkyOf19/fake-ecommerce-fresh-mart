@@ -7,7 +7,7 @@ import { FaRegHeart } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
 
 // logo 
-import logo from '../../assets/logo/logo.png'
+// import logo from '../../assets/logo/logo.png'
 import { Link } from 'react-router';
 
 const Navbar = () => {
@@ -57,7 +57,7 @@ const Navbar = () => {
 
 
     return (
-        <div className={`w-full flex flex-row justify-between items-center py-2.5 fixed top-0 z-50  ${blur ? 'backdrop-blur-sm shadow-md' : 'bg-transparent'} ${showNavbar ? 'translate-y-0' : '-translate-y-full'} transition-all duration-300 ease-in-out `}>
+        <div className={`w-full flex flex-row justify-between items-center py-2.5 fixed top-0 z-50  ${blur ? 'backdrop-blur-lg shadow-md' : 'bg-transparent'} ${showNavbar ? 'translate-y-0' : '-translate-y-full'} transition-all duration-300 ease-in-out `}>
             <div className='flex flex-row justify-center items-center px-7'>
                 <h2 className='text-2xl font-bold text-primary-matcha'>E-FM</h2>
                 {/* <img src={logo} alt="logo" className='w-24' /> */}

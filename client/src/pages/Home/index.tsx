@@ -1,7 +1,7 @@
 import type { FC } from "react"
 import Navbar from "../../fragments/Navbar/index."
 import SectionThumbnail from "./SectionThumbnail"
-import SectionTwo from "./SectionTwo"
+import SectionTwo from "./SectionStoriesCategory"
 
 const Home: FC = () => {
 
