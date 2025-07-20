@@ -1,6 +1,7 @@
 import type { FC } from "react"
 import Navbar from "../../fragments/Navbar/index."
 import SectionThumbnail from "./SectionThumbnail"
+import SectionTwo from "./SectionTwo"
 
 const Home: FC = () => {
 
@@ -9,6 +10,8 @@ const Home: FC = () => {
             <Navbar />
             {/* section thumbnail */}
             <SectionThumbnail />
+            {/* section two */}
+            <SectionTwo />
         </div>
     )
 }

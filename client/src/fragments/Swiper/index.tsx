@@ -46,12 +46,13 @@ const SwiperThumb: FC = () => {
                 }}
                 pagination={{ clickable: true }}
                 loop={true}
+                speed={1000}
                 effect="fade"
                 fadeEffect={{ crossFade: true }}
                 slidesPerView={1}
                 autoplay={{ delay: 5000, disableOnInteraction: false }}
                 allowTouchMove={true}
-                className="duration-1000  relative w-full h-full"
+                className="relative w-full h-full"
             >
                 <SwiperSlide>
                     <ContentThumbnail img={"burger"} />
