@@ -1,5 +1,5 @@
 import { useInView } from "react-intersection-observer";
-import { useState } from "react";
+import { useState, type FC } from "react";
 
 type LazyImageProps = {
     src: string;
@@ -7,7 +7,7 @@ type LazyImageProps = {
     className?: string;
 };
 
-export const LazyImage = ({ src, alt, className }: LazyImageProps) => {
+export const LazyImage: FC<LazyImageProps> = ({ src, alt, className }: LazyImageProps) => {
     const { ref, inView } = useInView({
         triggerOnce: true,
         threshold: 1,
