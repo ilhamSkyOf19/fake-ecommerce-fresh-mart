@@ -3,6 +3,7 @@ import Navbar from "../../fragments/Navbar/index."
 import SectionThumbnail from "./SectionThumbnail"
 import SectionTwo from "./SectionStoriesCategory"
 import SectionInfo from "./SectionInfo"
+import SectionFeaturedProducts from "./SectionFeaturedProducts"
 
 const Home: FC = () => {
 
@@ -13,6 +14,8 @@ const Home: FC = () => {
             <SectionThumbnail />
             {/* section two */}
             <SectionTwo />
+            {/* section featured products */}
+            <SectionFeaturedProducts />
             {/* section info */}
             <SectionInfo />
         </div>

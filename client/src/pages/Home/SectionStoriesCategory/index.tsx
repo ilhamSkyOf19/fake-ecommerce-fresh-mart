@@ -230,7 +230,7 @@ const ContentRight: FC = () => {
 
 const ImgCategory: FC = () => {
     return (
-        <div className='w-full h-[98vh] grid grid-cols-1 grid-rows-2 gap-4 px-12'>
+        <div className='w-full h-[98vh] grid grid-cols-1 grid-rows-2 gap-4 px-7'>
             <div className='row-span-1  grid grid-cols-2 grid-rows-1 gap-4'>
                 <div className='col-span-1  rounded-md overflow-hidden relative group cursor-pointer'>
                     <div className="w-full h-full transition-all duration-700 ease-in-out group-hover:scale-105">

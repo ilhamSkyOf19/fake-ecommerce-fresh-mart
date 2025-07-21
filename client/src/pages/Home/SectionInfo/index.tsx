@@ -17,7 +17,7 @@ const SectionInfo: FC = () => {
 
 
     return (
-        <div className='w-full h-[100vh]  flex justify-center items-center relative'>
+        <div className='w-full h-[100vh] flex justify-center items-center relative'>
             {/* bg */}
             <div className="bg-white w-full h-[88%] absolute bottom-0 z-1">
                 <div className="w-[27rem] aspect-[16/9] absolute -right-[9rem] top-8 opacity-40 ">
