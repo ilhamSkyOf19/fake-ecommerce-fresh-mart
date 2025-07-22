@@ -4,6 +4,7 @@ import SectionThumbnail from "./SectionThumbnail"
 import SectionTwo from "./SectionStoriesCategory"
 import SectionInfo from "./SectionInfo"
 import SectionFeaturedProducts from "./SectionFeaturedProducts"
+import SectionPromo from "./SectionPromo"
 
 const Home: FC = () => {
 
@@ -16,6 +17,8 @@ const Home: FC = () => {
             <SectionTwo />
             {/* section featured products */}
             <SectionFeaturedProducts />
+            {/* section promo */}
+            <SectionPromo />
             {/* section info */}
             <SectionInfo />
         </div>
