@@ -5,6 +5,7 @@ import SectionTwo from "./SectionStoriesCategory"
 import SectionInfo from "./SectionInfo"
 import SectionFeaturedProducts from "./SectionFeaturedProducts"
 import SectionPromo from "./SectionPromo"
+import SectionHightlightProducts from "./SectionHightlightProducts"
 
 const Home: FC = () => {
 
@@ -21,6 +22,8 @@ const Home: FC = () => {
             <SectionPromo />
             {/* section info */}
             <SectionInfo />
+            {/* section hightlight */}
+            <SectionHightlightProducts />
         </div>
     )
 }

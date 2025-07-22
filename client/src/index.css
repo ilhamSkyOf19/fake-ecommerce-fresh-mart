@@ -27,3 +27,37 @@
 .swiper-fade .swiper-slide {
   transition-duration: 500ms !important; /* fade 1.5 detik */
 }
+
+.custom-bullet {
+@apply !bg-transparent !border-[1.5px] !border-white !w-[1rem] !h-[1rem] relative !flex !justify-center !items-center !opacity-100;
+}
+
+.custom-bullet::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  width: 0.5rem; /* 2.5 */
+  height: 0.5rem;
+  border-radius: 9999px;
+  transform: scale(0);
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-bullet:hover::after {
+  transform: scale(1);
+}
+
+.custom-bullet.swiper-pagination-bullet-active {
+  @apply !bg-transparent !border-[1.5px]  !border-white !w-[1rem] !h-[1rem] relative flex justify-center items-center;
+}
+
+.custom-bullet.swiper-pagination-bullet-active::after {
+  content: '';
+  position: absolute;
+  background-color: white;
+  width: 0.5rem; /* 2.5 */
+  height: 0.5rem;
+  border-radius: 9999px;
+  transform: scale(1)
+
+}
