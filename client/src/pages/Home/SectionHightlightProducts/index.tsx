@@ -8,7 +8,7 @@ import cerealDrop2 from "../../../assets/img/highlight/cereal-drop-2.png"
 import strawberyJuice from "../../../assets/img/highlight/strawbery-juice.png"
 const SectionHightlightProducts: FC = () => {
     return (
-        <div className={'w-full min-h-[100vh] grid grid-cols-5 grid-rows-2 gap-4 px-24 py-12 mb-[100vh]'}>
+        <div className={'w-full min-h-[100vh] grid grid-cols-5 grid-rows-2 gap-4 px-24 py-12 '}>
             <div className="col-span-3 row-span-2 group h-[85vh]">
                 <SwiperHighLightProducts />
             </div>
@@ -19,7 +19,7 @@ const SectionHightlightProducts: FC = () => {
                         <div className="w-[10%] h-[16%] bg-white rounded-full absolute right-[24%] bottom-[10%] shadow-[0_0_10rem_3rem_rgba(255,255,255,1)]"></div>
                         {/* img */}
                         <div className="w-[60%] absolute top-0 right-0 z-0 group-hover:scale-105 transition-all duration-700 ease-in-out">
-                            <LazyImage src={cerealDrop2} alt="cereal" className="w-full h-full object-cover" />
+                            <img loading="lazy" src={cerealDrop2} alt="cereal" className="w-full h-full object-cover" />
                         </div>
                         {/* text */}
                         <div className="absolute w-full h-full flex flex-col justify-center items-start pl-10 gap-2">
@@ -41,7 +41,7 @@ const SectionHightlightProducts: FC = () => {
                         <div className="w-[10%] h-[16%] bg-white rounded-full absolute left-[24%] bottom-[24%] shadow-[0_0_10rem_3rem_rgba(255,255,255,1)]"></div>
                         {/* img */}
                         <div className="w-[90%] absolute -bottom-32 -left-22 z-0 group-hover:scale-105 transition-all duration-700 ease-in-out -scale-x-100">
-                            <LazyImage src={strawberyJuice} alt="cereal" className="w-full h-full object-cover" />
+                            <img loading="lazy" src={strawberyJuice} alt="cereal" className="w-full h-full object-cover" />
                         </div>
                         {/* text */}
                         <div className="absolute w-full h-full flex flex-col justify-center items-end">

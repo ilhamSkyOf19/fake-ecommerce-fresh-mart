@@ -6,6 +6,7 @@ import SectionInfo from "./SectionInfo"
 import SectionFeaturedProducts from "./SectionFeaturedProducts"
 import SectionPromo from "./SectionPromo"
 import SectionHightlightProducts from "./SectionHightlightProducts"
+import SectionNews from "./SectionNews"
 
 const Home: FC = () => {
 
@@ -24,6 +25,8 @@ const Home: FC = () => {
             <SectionInfo />
             {/* section hightlight */}
             <SectionHightlightProducts />
+            {/* section news */}
+            <SectionNews />
         </div>
     )
 }
