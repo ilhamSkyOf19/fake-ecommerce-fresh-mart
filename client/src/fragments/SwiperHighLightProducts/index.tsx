@@ -1,4 +1,4 @@
-import { type FC } from 'react'
+import { useState, type FC } from 'react'
 import { EffectFade, Pagination } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/css'
@@ -85,6 +85,8 @@ type LayoutContentProps = {
 
 // layout content 
 const LayoutContent: FC<LayoutContentProps> = ({ color, children }) => {
+    // state hover 
+    const [hover, setHover] = useState(false);
     return (
         <div className={"w-full h-full relative shadow-[inset_0_0_200px_1px_rgba(0,0,0,0.1)] overflow-hidden rounded-md"} style={{ backgroundColor: color }}>
             {children}
@@ -99,7 +101,7 @@ const LayoutContent: FC<LayoutContentProps> = ({ color, children }) => {
                     A blend of freshly squeezed orange juice with natural vitamins and minerals
                 </p>
                 {/* button */}
-                <button type="button" className={`text-to-small font-bold border-2 uppercase text-white rounded-full border-white py-2 px-6.5 hover:bg-white hover:text-[${color}] transition-all duration-300 ease-in-out`}>
+                <button type="button" className={`text-to-small font-bold border-2 uppercase text-white rounded-full border-white py-2 px-6.5 hover:bg-white transition-all duration-300 ease-in-out`} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} style={{ color: hover ? color : 'white' }}>
                     shop now
                 </button>
             </div>
