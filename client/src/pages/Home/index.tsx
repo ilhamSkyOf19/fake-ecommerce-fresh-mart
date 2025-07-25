@@ -1,5 +1,4 @@
 import type { FC } from "react"
-import Navbar from "../../fragments/Navbar/index."
 import SectionThumbnail from "./SectionThumbnail"
 import SectionTwo from "./SectionStoriesCategory"
 import SectionInfo from "./SectionInfo"
@@ -7,12 +6,13 @@ import SectionFeaturedProducts from "./SectionFeaturedProducts"
 import SectionPromo from "./SectionPromo"
 import SectionHightlightProducts from "./SectionHightlightProducts"
 import SectionNews from "./SectionNews"
+import Footer from "./Footer"
+import LayoutPage from "../../Layouts/LayoutPage"
 
 const Home: FC = () => {
 
     return (
-        <div className="w-full min-h-[100vh] overflow-hidden bg-[#f4f6f0]">
-            <Navbar />
+        <LayoutPage>
             {/* section thumbnail */}
             <SectionThumbnail />
             {/* section two */}
@@ -27,7 +27,10 @@ const Home: FC = () => {
             <SectionHightlightProducts />
             {/* section news */}
             <SectionNews />
-        </div>
+            {/* footer */}
+            <Footer />
+        </LayoutPage>
+
     )
 }
 

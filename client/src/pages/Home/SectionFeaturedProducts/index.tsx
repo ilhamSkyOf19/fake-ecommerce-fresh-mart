@@ -1,5 +1,6 @@
 import { useState, type FC } from "react"
 import CardProducts from "../../../components/CardProducts"
+import ButtonMore from "../../../components/ButtonMore"
 
 const SectionFeaturedProducts: FC = () => {
 
@@ -16,13 +17,16 @@ const SectionFeaturedProducts: FC = () => {
             <Header setSelected={setSelected} selected={selected} category={category} />
 
             {/* products */}
-            <div className="flex flex-row justify-between items-start flex-wrap gap-4 p-7">
+            <div className="flex flex-row justify-between items-start flex-wrap gap-4 p-7 mb-5">
                 {
                     [0, 1, 2, 3, 4].map((_, index) => (
 
                         <CardProducts key={index} />
                     ))
                 }
+            </div>
+            <div className="w-full flex flex-row justify-center items-center">
+                <ButtonMore link="/" />
             </div>
 
         </div>

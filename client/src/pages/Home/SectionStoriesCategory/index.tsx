@@ -145,7 +145,7 @@ const Stories: FC<StoriesProps> = ({ setActiveSwiper, activeSwiper, images }) =>
         <div className={`w-[75%] h-[22rem] flex flex-row justify-center items-center mb-8`}>
             <div className='flex-1 flex flex-row justify-end items-center relative w-full h-full rounded-l-md'>
                 <div className='w-[50%]  h-full bg-white'></div>
-                <div className='w-full h-[80%] bg-black absolute top-0 rounded-lg overflow-hidden'>
+                <div className='w-full h-[80%] absolute top-0 rounded-lg overflow-hidden'>
                     <Swiper
                         modules={[EffectFade, Autoplay]}
                         speed={2000}
@@ -183,7 +183,6 @@ const Stories: FC<StoriesProps> = ({ setActiveSwiper, activeSwiper, images }) =>
                         }
                     </Swiper>
                 </div>
-
             </div>
 
             {/* content right */}
@@ -196,7 +195,7 @@ const Stories: FC<StoriesProps> = ({ setActiveSwiper, activeSwiper, images }) =>
 // content right 
 const ContentRight: FC = () => {
     return (
-        <div className='flex-1 bg-white w-full h-full rounded-r-md flex flex-row justify-start items-start pt-12'>
+        <div className='flex-1 bg-white w-full h-full rounded-r-md flex flex-row justify-start items-start pt-12 pl-4'>
             <div className=' flex-1 h-full relative flex justify-start items-start'>
                 <p className=' absolute w-[8rem] text-to-small font-semibold text-primary-matcha -rotate-90 tracking-[0.3rem] z-2 -left-[2.7rem] top-12 uppercase'>
                     our stories

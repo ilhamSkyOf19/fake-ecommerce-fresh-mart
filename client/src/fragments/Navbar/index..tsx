@@ -5,20 +5,26 @@ import { FaHeadset } from "react-icons/fa";
 import { FaRegUser } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { HiOutlineShoppingBag } from "react-icons/hi2";
+import { useLocation } from 'react-router';
 
 // logo 
 import { Link } from 'react-router';
 
+// type 
+type Router = {
+    label: string;
+    link: string;
+}
+
 const Navbar = () => {
+    // state
     const [showNavbar, setShowNavbar] = useState(true)
     const [blur, setBlur] = useState(false)
 
 
     //  show navbar
     const lastScrollY = useRef(0);
-
     useEffect(() => {
-
         const handleScroll = () => {
             const currentScrollY = window.scrollY; // get current scroll 
 
@@ -50,9 +56,38 @@ const Navbar = () => {
 
 
 
-
     // router 
-    const router: string[] = ['home', 'shop', 'page', 'blog', 'shortcode', 'on sale', 'contact']
+    const router: Router[] = [
+        {
+            label: 'home',
+            link: '/'
+        },
+        {
+            label: 'shop',
+            link: '/'
+        },
+        {
+            label: 'cart',
+            link: '/cart'
+        },
+        {
+            label: 'blog',
+            link: '/'
+        },
+        {
+            label: 'contact',
+            link: '/'
+        },
+        {
+            label: 'about',
+            link: '/'
+        }
+    ]
+
+    // pathname 
+    const pathname = useLocation().pathname
+    console.log(pathname)
+
 
 
     return (
@@ -66,8 +101,8 @@ const Navbar = () => {
             <div className='flex flex-row justify-center items-center gap-5'>
                 {
                     router.map((item, index) => (
-                        <Link key={index} to="/" className={`px-1.5 text-xs font-semibold  hover:text-primary-matcha transition-all duration-300 ease-in-out cursor-pointer capitalize ${blur ? 'text-black' : 'text-white'} `}>
-                            {item}
+                        <Link key={index} to={item.link} className={`px-1.5 text-xs font-semibold  hover:text-primary-matcha transition-all duration-300 ease-in-out cursor-pointer capitalize ${blur ? 'text-black' : pathname !== '/' ? 'text-black' : 'text-white'}`}>
+                            {item.label}
                         </Link>
                     ))
                 }
@@ -78,7 +113,7 @@ const Navbar = () => {
                 <button className='flex flex-row justify-start items-center gap-2'>
                     <FaHeadset className='text-primary-matcha text-xl' />
                     <div className='flex flex-col justify-end items-start'>
-                        <p className={`text-to-small ${blur ? 'text-black' : 'text-white'}`}>call us</p>
+                        <p className={`text-to-small ${blur ? 'text-black' : pathname !== '/' ? 'text-black' : 'text-white'}`}>call us</p>
                         <p className='text-to-small font-semibold text-primary-matcha'>(+91) 123-456-7890</p>
                     </div>
                 </button>
@@ -89,7 +124,7 @@ const Navbar = () => {
                         <div className='flex flex-row justify-center items-center w-8 h-8 bg-slate-200 rounded-full'>
                             <FaRegUser className=' text-md' />
                         </div>
-                        <div className={`flex flex-col justify-between items-start ${blur ? 'text-black' : 'text-white'}`}>
+                        <div className={`flex flex-col justify-between items-start ${blur ? 'text-black' : pathname !== '/' ? 'text-black' : 'text-white'}`}>
                             <p className='text-to-small font-medium '>Login <span className='text-primary-matcha font-semibold'>or</span></p>
                             <p className='text-to-small font-medium '>Register</p>
                         </div>
@@ -117,7 +152,7 @@ type FavoriteCartProps = {
 // favortie & cart component 
 const FavoriteCart: FC<FavoriteCartProps> = ({ type, count }) => {
     return (
-        <button className='flex flex-row justify-center items-center p-1 relative'>
+        <Link to={type === 'favorite' ? '/' : '/cart'} className='flex flex-row justify-center items-center p-1 relative'>
             {/* icon */}
             <div className='flex flex-row justify-center items-center bg-slate-200 w-8 h-8 rounded-full'>
                 {
@@ -132,7 +167,7 @@ const FavoriteCart: FC<FavoriteCartProps> = ({ type, count }) => {
                 <p className='text-[0.5rem] font-semibold text-white'>{count}</p>
             </div>
 
-        </button>
+        </Link>
     )
 }
 

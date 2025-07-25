@@ -87,9 +87,9 @@ const CardProducts: FC = () => {
                                 <button type="button" onClick={handleLoading}>
                                     {
                                         cart ? (
-                                            <BsFillCartCheckFill className="text-2xl text-black cursor-pointer" />
+                                            <BsFillCartCheckFill className="text-2xl text-primary-matcha cursor-pointer" />
                                         ) : (
-                                            <BsCartPlusFill className="text-2xl text-primary-matcha cursor-pointer" />
+                                            <BsCartPlusFill className="text-2xl text-black cursor-pointer" />
                                         )
                                     }
                                 </button>
