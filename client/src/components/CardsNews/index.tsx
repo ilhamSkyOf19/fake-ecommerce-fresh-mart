@@ -4,7 +4,7 @@ import { LazyImage } from '../../utils/LazyLoadImg'
 
 // icons 
 import { FaCalendarAlt } from "react-icons/fa";
-import { formatDate } from '../../utils/LazyLoadImg/formatDate';
+import { formatDate } from '../../utils/formatDate';
 import { FaRegComments } from "react-icons/fa6";
 import { LuDot } from "react-icons/lu";
 

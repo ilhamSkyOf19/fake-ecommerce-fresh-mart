@@ -59,5 +59,27 @@
   height: 0.5rem;
   border-radius: 9999px;
   transform: scale(1)
+}
 
+
+
+/* custom scroll bar */
+/* Webkit-based browser (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+  width: 7px;             /* atau height: 8px; untuk horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;  /* Menghilangkan background track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);   /* Warna scroll "thumb"-nya */
+  border-radius: 10px;
+  border: 2px solid transparent;  /* Supaya terlihat lebih halus */
+}
+
+/* Saat hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: #74A12E;
 }

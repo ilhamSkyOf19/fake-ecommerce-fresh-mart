@@ -5,7 +5,7 @@ import ButtonMore from "../../../components/ButtonMore"
 const SectionFeaturedProducts: FC = () => {
 
     // state
-    const [selected, setSelected] = useState(0)
+    const [selected, setSelected] = useState<number>(0)
 
     // category product
     const category: string[] = ['organic', 'fruits', 'seafood', 'wine & beer', 'bakery']

@@ -37,7 +37,7 @@ import CategoryComponent from '../../../components/CategoryComponent'
 const SectionStoriesCategory: FC = () => {
 
     // state indikator swiper 
-    const [activeSwiper, setActiveSwiper] = useState(0);
+    const [activeSwiper, setActiveSwiper] = useState<number>(0);
 
     // images
     const images: string[] = [aplles, meats, seafood, fruits]

@@ -86,7 +86,7 @@ type LayoutContentProps = {
 // layout content 
 const LayoutContent: FC<LayoutContentProps> = ({ color, children }) => {
     // state hover 
-    const [hover, setHover] = useState(false);
+    const [hover, setHover] = useState<boolean>(false);
     return (
         <div className={"w-full h-full relative shadow-[inset_0_0_200px_1px_rgba(0,0,0,0.1)] overflow-hidden rounded-md"} style={{ backgroundColor: color }}>
             {children}

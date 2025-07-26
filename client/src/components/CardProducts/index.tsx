@@ -10,12 +10,12 @@ import IconCards from "../IconCards";
 
 const CardProducts: FC = () => {
     // state loading
-    const [loading, setLoading] = useState(false);
-    const [loadingFavorite, setLoadingFavorite] = useState(false);
-    const [loadingRepeat, setLoadingRepeat] = useState(false);
-    const [cart, setCart] = useState(false);
-    const [favorite, setFavorite] = useState(false);
-    const [repeat, setRepeat] = useState(false);
+    const [loading, setLoading] = useState<boolean>(false);
+    const [loadingFavorite, setLoadingFavorite] = useState<boolean>(false);
+    const [loadingRepeat, setLoadingRepeat] = useState<boolean>(false);
+    const [cart, setCart] = useState<boolean>(false);
+    const [favorite, setFavorite] = useState<boolean>(false);
+    const [repeat, setRepeat] = useState<boolean>(false);
 
 
     // handle loading

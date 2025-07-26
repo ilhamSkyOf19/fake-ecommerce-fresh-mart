@@ -18,12 +18,12 @@ type Router = {
 
 const Navbar = () => {
     // state
-    const [showNavbar, setShowNavbar] = useState(true)
-    const [blur, setBlur] = useState(false)
+    const [showNavbar, setShowNavbar] = useState<boolean>(true)
+    const [blur, setBlur] = useState<boolean>(false)
 
 
     //  show navbar
-    const lastScrollY = useRef(0);
+    const lastScrollY = useRef<number>(0);
     useEffect(() => {
         const handleScroll = () => {
             const currentScrollY = window.scrollY; // get current scroll 
@@ -85,13 +85,12 @@ const Navbar = () => {
     ]
 
     // pathname 
-    const pathname = useLocation().pathname
-    console.log(pathname)
+    const pathname: string = useLocation().pathname
 
 
 
     return (
-        <div className={`w-full flex flex-row justify-between items-center py-2.5 fixed top-0 z-50  ${blur ? 'backdrop-blur-lg shadow-md' : 'bg-transparent'} ${showNavbar ? 'translate-y-0' : '-translate-y-full'} transition-all duration-300 ease-in-out px-7`}>
+        <div className={`w-full flex flex-row justify-between items-center py-2.5 fixed top-0 z-50   ${blur && 'backdrop-blur-lg shadow-md'} ${showNavbar ? 'translate-y-0' : '-translate-y-full'} transition-all duration-300 ease-in-out px-7 ${pathname === '/' ? 'bg-transparent' : 'bg-transparent'}`}>
             <div className='flex flex-row justify-center items-center'>
                 <h2 className='text-2xl font-bold text-primary-matcha'>E-FM</h2>
                 {/* <img src={logo} alt="logo" className='w-24' /> */}
