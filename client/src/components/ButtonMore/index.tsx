@@ -8,7 +8,7 @@ type Props = {
 
 const ButtonMore: FC<Props> = ({ link }) => {
     return (
-        <Link to={link} className="flex flex-row justify-center items-center gap-2 h-8.5 w-24 bg-primary-matcha rounded-full hover:scale-105 transition-transform duration-300 ease-in-out origin-center">
+        <Link to={link} className="flex flex-row justify-center items-center gap-2 h-8.5 w-24 bg-primary-matcha rounded-full hover:opacity-80 transition-opacity duration-300 ease-in-out origin-center">
             <p className="text-xs font-semibold text-white">More</p>
             <FaArrowRightLong className="text-sm text-white" />
         </Link>

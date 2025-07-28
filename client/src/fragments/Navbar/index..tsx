@@ -119,15 +119,15 @@ const Navbar = () => {
 
                 <div className='flex flex-row justify-start items-center gap-5'>
                     {/* login register */}
-                    <button className='flex flex-row justify-start items-center gap-2'>
+                    <div className='flex flex-row justify-start items-center gap-2'>
                         <div className='flex flex-row justify-center items-center w-8 h-8 bg-slate-200 rounded-full'>
                             <FaRegUser className=' text-md' />
                         </div>
                         <div className={`flex flex-col justify-between items-start ${blur ? 'text-black' : pathname !== '/' ? 'text-black' : 'text-white'}`}>
-                            <p className='text-to-small font-medium '>Login <span className='text-primary-matcha font-semibold'>or</span></p>
-                            <p className='text-to-small font-medium '>Register</p>
+                            <Link to='/login' className='text-to-small font-medium '>Login <span className='text-primary-matcha font-semibold'>or</span></Link>
+                            <Link to={'/login'} className='text-to-small font-medium '>Register</Link>
                         </div>
-                    </button>
+                    </div>
 
                     {/* favorite */}
                     <FavoriteCart type='favorite' count={3} />

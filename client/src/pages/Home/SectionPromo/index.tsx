@@ -110,7 +110,7 @@ const Background: FC = () => {
                 <div className="w-30 h-30 top-4 left-[30rem] absolute blur-xs rotate-120">
                     <LazyImage src={leafBlur} alt="blueberry" className="w-full h-full object-cover" />
                 </div>
-                <div className="w-[5%] h-[17%]  rounded-full bg-transparent top-1/2 left-[67%] absolute shadow-[0_0_15rem_4rem_rgba(255,255,255,1)]"></div>
+                <div className="w-[5%] h-[17%]  rounded-full bg-transparent top-1/2 left-[67%] absolute shadow-[0_0_15rem_4rem_rgba(255,255,255,1)] animate-fade-in-fisrt"></div>
             </div>
         </div>
     )
