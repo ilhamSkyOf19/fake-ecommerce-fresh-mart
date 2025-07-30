@@ -1,14 +1,14 @@
-# GET http://localhost:3000/api/products/category/bakery
+# GET http://localhost:3000/api/products/category/organic
 
 # POST  http://localhost:3000/api/products
 # Content-Type: application/json
 
 # {
-#     "category": "bakery",
+#     "category": 3242,
 #     "title": "White Bread - Freshly Baked by Origin Bakery",
 #     "price": 99,
 #     "favorite": false,
-#     "img": "white-bread.png",
+#     "img": 23432,
 #     "netWeight": 100,
 #     "stock": 3
 # }

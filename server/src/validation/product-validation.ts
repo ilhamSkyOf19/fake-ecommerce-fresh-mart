@@ -13,6 +13,11 @@ export class ProductValidation {
         stock: z.number()
     })
 
+    // get category
+    static readonly GET_CATEGORY: ZodType<{ category: string }> = z.object({
+        category: z.string()
+    })
+
     // delete 
     static readonly DELETE: ZodType<{ id: string }> = z.object({
         id: z.string()

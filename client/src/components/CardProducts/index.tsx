@@ -6,9 +6,16 @@ import { BsCartPlusFill, BsFillCartCheckFill } from "react-icons/bs";
 import loadingSvg from "../../assets/component/loading.svg"
 
 import IconCards from "../IconCards";
+import type { ProductResponse } from "../../model/product-model";
+import { formatUsd } from "../../utils/formatCurrency";
+
+// type props 
+type Props = {
+    item?: ProductResponse | null;
+}
 
 
-const CardProducts: FC = () => {
+const CardProducts: FC<Props> = ({ item }) => {
     // state loading
     const [loading, setLoading] = useState<boolean>(false);
     const [loadingFavorite, setLoadingFavorite] = useState<boolean>(false);
@@ -58,24 +65,24 @@ const CardProducts: FC = () => {
     return (
         <div className='w-[14rem] h-[22rem] flex flex-col justify-start items-start bg-white shadow-md rounded-md overflow-hidden'>
             <button type="button" className=" flex-1 w-full h-full flex flex-col justify-center items-center overflow-hidden">
-                <LazyImage src={`./products/apple.png`} alt="products" className="w-full h-full object-cover" />
+                <LazyImage src={`./products/${item?.img || ''}`} alt="products" className="w-full h-full object-cover" />
             </button>
             <div className="flex-1 flex flex-col justify-start items-start h-full w-full px-4 gap-1">
                 {/* category */}
-                <p className="font-medium text-to-small text-primary-matcha italic capitalize">
-                    organic
+                <p className="font-medium text-to-small text-primary-matcha italic capitalize ">
+                    {item?.category || ''}
                 </p>
                 {/* title */}
-                <p className="font-bold text-md mb-1.5">
-                    Lorem ipsum dolor sit Lorem, ipsum.
+                <p className="font-bold text-sm mb-1.5 min-h-[3rem]">
+                    {item?.title || ''}
                 </p>
                 {/* price and start*/}
                 <div className="w-full flex flex-row justify-between items-start mb-5">
                     <p className="text-xs text-orange-300 font-semibold">
-                        $30.00
+                        {formatUsd(item?.price || 0)}
                     </p>
                     <p className="text-xs font-semibold capitalize">
-                        sold: <span className="font-normal">455</span>
+                        stock: <span className="font-normal">{item?.stock || 0}</span>
                     </p>
                 </div>
                 <div className="w-full h-7 flex flex-row justify-between items-center relative">

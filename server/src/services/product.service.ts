@@ -1,13 +1,16 @@
 import { prisma } from "@/applications/prismaClient";
 import { ProductRequest, ProductResponse, toProductsResponse } from "@/models/product-model";
 import { ProductValidation } from "@/validation/product-validation";
+import { ZodError } from "zod";
 
 export class ProductService {
 
 
     // create 
-    static async create(product: ProductRequest): Promise<ProductResponse | null> {
+    static async create(product: ProductRequest): Promise<ProductResponse | null | { errors: { path: string, message: string }[] }> {
         try {
+            product = ProductValidation.CREATE.parse(product);
+
             const result = await prisma.products.create({
                 data: {
                     category: product.category,
@@ -20,6 +23,14 @@ export class ProductService {
             });
             return toProductsResponse(result);
         } catch (error) {
+            if (error instanceof ZodError) {
+                // Tangkap error per field
+                const errors = error.issues.map(err => ({
+                    path: err.path.join('.'),
+                    message: err.message
+                }));
+                return { errors };
+            }
             console.log(error);
             return null;
         }
@@ -39,10 +50,14 @@ export class ProductService {
     // get category
     static async getCategory(category: string): Promise<ProductResponse[]> {
         try {
+            // cek category
+            category = ProductValidation.GET_CATEGORY.parse({ category }).category;
+
             const result = await prisma.products.findMany({
                 where: {
                     category: category
-                }
+                },
+                take: 5
             })
             return result.map(toProductsResponse);
         } catch (error) {
@@ -58,11 +73,9 @@ export class ProductService {
         if (!id) {
             return { success: false };
         }
-
-        id = ProductValidation.DELETE.parse({ id }).id;
-
         // delete
         try {
+            id = ProductValidation.DELETE.parse({ id }).id;
             const result = await prisma.products.delete({
                 where: {
                     id: id
