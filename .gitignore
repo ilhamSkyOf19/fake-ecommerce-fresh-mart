@@ -1,15 +1,16 @@
 # Node modules
-frontend/node_modules/
-backend/node_modules/
+client/node_modules/
+server/node_modules/
+server/next
 
 # Build files
-frontend/dist/
-backend/dist/
+client/dist/
+server/dist/
 *.log
 
 # Env files
-frontend/.env
-backend/.env
+client/.env
+server/.env
 .env
 
 # IDE configs
