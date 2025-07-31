@@ -24,3 +24,13 @@ model Products {
   img      String
   stock    Int
 }
+
+model News {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  category    String
+  title       String
+  date        String
+  comments    Int
+  img         String
+  description String
+}

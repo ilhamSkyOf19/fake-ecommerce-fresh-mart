@@ -15,3 +15,20 @@
 
 
 # DELETE http://localhost:3000/api/products/6889b47095ecc722f461497e
+
+
+# GET http://localhost:3000/api/news?take=2&order=asc
+
+# POST  http://localhost:3000/api/news
+# Content-Type: application/json
+
+# {
+#     "category": "Health",
+#     "title": "New Health Guidelines Released",
+#     "date": "2023-10-01",
+#     "comments": "This is a comment",
+#     "img": "https://example.com/image.jpg",
+#     "description": "A detailed description of the health guidelines."
+# }
+
+# DELETE http://localhost:3000/api/news/688af8114efb2970ebf2f353

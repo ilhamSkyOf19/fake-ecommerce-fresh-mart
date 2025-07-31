@@ -3,7 +3,7 @@ import CardProducts from "../../../components/CardProducts"
 import ButtonMore from "../../../components/ButtonMore"
 import type { ProductResponse } from "../../../model/product-model";
 import type { Fetch } from "../../../types/types";
-import { fetchGetProductsByCategory } from "../../../helpers/product-fetch";
+import { fetchGetProductsByCategory } from "../../../helpers/fetch";
 import LoadingCardProduct from "../../../components/LoadingCardProduct";
 
 

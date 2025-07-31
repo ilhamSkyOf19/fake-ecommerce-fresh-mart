@@ -22,5 +22,4 @@ export class ProductValidation {
     static readonly DELETE: ZodType<{ id: string }> = z.object({
         id: z.string()
     })
-
 }
