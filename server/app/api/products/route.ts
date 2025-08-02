@@ -9,19 +9,23 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
 
         // Simpan ke database
-        const createdProduct = await ProductService.create(body);
+        const response = await ProductService.create(body);
 
-        if (createdProduct && 'errors' in createdProduct) {
+
+        // Cek error
+        if (!response.success) {
             return NextResponse.json(
-                { errors: createdProduct.errors },
-                { status: 400 }
-            );
+                { messege: response.errors },
+                { status: 400 });
         }
 
         return NextResponse.json(
-            { message: 'Product created successfully', product: createdProduct },
-            { status: 201 }
-        )
+            {
+                success: true,
+                status: 201,
+                message: "User created successfully",
+                data: response.data
+            }, { status: 201 });
 
     } catch (error) {
         return NextResponse.json({

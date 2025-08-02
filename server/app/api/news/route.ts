@@ -6,27 +6,27 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
 
         const body = await req.json();
-        const news = await NewsService.create(body);
+        const response = await NewsService.create(body);
 
-        if (news && 'errors' in news) {
+        if (!response.success) {
             return NextResponse.json(
-                { message: 'Validation Error', errors: news.errors },
+                { message: response.errors },
                 { status: 400 }
             );
         }
 
         return NextResponse.json(
-            { news },
+            {
+                success: true,
+                status: 201,
+                message: "News created successfully",
+                data: response.data
+            },
             { status: 201 }
         );
 
     } catch (error) {
-        if (error instanceof Error) {
-            return NextResponse.json(
-                { message: error.message },
-                { status: 500 }
-            );
-        }
+        console.error(error);
         return NextResponse.json(
             { message: 'Internal Server Error' },
             { status: 500 }
@@ -45,32 +45,38 @@ export async function GET(req: NextRequest): Promise<NextResponse> {
 
 
         // cek order 
-        if (order && !["asc", "desc"].includes(order)) {
-            return NextResponse.json({
-                message: 'Invalid order'
-            }, {
-                status: 400
-            })
+        if (order !== "asc" && order !== "desc") {
+            return NextResponse.json(
+                { message: 'Invalid order parameter' },
+                { status: 400 }
+            );
         }
 
 
 
         // query 
-        const news = await NewsService.getNews(take, order);
+        const response = await NewsService.getNews(take, order);
 
-        if (news.length === 0) {
+        if (!response.success) {
             return NextResponse.json(
-                { message: 'No news found' },
-                { status: 404 }
+                { message: response.errors },
+                { status: 400 }
             );
         }
 
+
         return NextResponse.json(
-            news,
+            {
+                success: true,
+                status: 200,
+                message: "News fetched successfully",
+                data: response.data
+            },
             { status: 200 }
         );
 
     } catch (error) {
+        console.error(error);
         return NextResponse.json(
             { message: 'Internal Server Error' },
             { status: 500 }

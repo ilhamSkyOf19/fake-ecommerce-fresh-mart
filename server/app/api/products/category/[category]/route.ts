@@ -8,8 +8,21 @@ export async function GET(
     const { category } = await context.params;
 
     try {
-        const products = await ProductService.getCategory(category)
-        return NextResponse.json(products, { status: 200 })
+        const response = await ProductService.getCategory(category)
+
+        // cek response
+        if (!response.success) {
+            return NextResponse.json({ messege: response.errors }, { status: 400 })
+        }
+
+        return NextResponse.json({
+            success: true,
+            status: 201,
+            message: "User created successfully",
+            data: response.data
+        }, { status: 201 });
+
+
     } catch (error) {
         console.error(error)
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 })

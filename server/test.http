@@ -14,7 +14,7 @@
 # }
 
 
-# DELETE http://localhost:3000/api/products/6889b47095ecc722f461497e
+# DELETE http://localhost:3000/api/products/6889b47095ecc722f461497ee
 
 
 # GET http://localhost:3000/api/news?take=2&order=asc
@@ -32,3 +32,32 @@
 # }
 
 # DELETE http://localhost:3000/api/news/688af8114efb2970ebf2f353
+
+# POST http://localhost:3000/api/users 
+# Content-Type: application/json
+
+# {
+#     "name": "ilham",
+#     "username": "ilham123",
+#     "email": "ilhamasdasa@gmail.com",
+#     "password": "ilham123"
+# }
+
+# POST http://localhost:3000/api/auth/login
+# Content-Type: application/json
+
+# {
+#     "email": "ilham@gmail.com",
+#     "password": "ilham123"
+# }
+
+
+# POST http://localhost:3000/api/auth/login
+# Content-Type: application/json
+
+# {
+#     "email"
+# }
+
+# GET http://localhost:3000/api/auth/session
+# Cookie: session=ENCRYPTED_DATA.HMAC_SIGNATURE

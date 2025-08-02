@@ -11,16 +11,16 @@ export async function DELETE(
 
     // delete product
     try {
-        const result = await ProductService.delete(id);
+        const response = await ProductService.delete(id);
 
-        if (result.success) {
+        if (response.success) {
             return NextResponse.json(
-                { message: 'Product deleted successfully' },
+                { message: response.message },
                 { status: 200 }
             )
         } else {
             return NextResponse.json(
-                { error: 'Product not found' },
+                { message: response.message },
                 { status: 404 }
             )
         }

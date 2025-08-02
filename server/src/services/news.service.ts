@@ -2,26 +2,29 @@ import { NewsRequest, NewsResponse, toNewsResponse } from "@/models/news-model";
 import { prisma } from "@/applications/prismaClient";
 import { NewsValidation } from "@/validation/news-validation";
 import { ZodError } from "zod";
+import { Prisma } from "generated/prisma";
+import { ServiceResult } from "@/types/service-type";
 export class NewsService {
     // get news
-    static async getNews(take: number, order: string): Promise<NewsResponse[]> {
+    static async getNews(take: number, order: string): Promise<ServiceResult<NewsResponse[]>> {
         try {
-            const result = await prisma?.news.findMany({
-                take: take,
-                orderBy: {
-                    date: order === "asc" ? "asc" : "desc"
-                }
+            const result = await prisma.news.findMany({
+                take,
+                orderBy: { date: order === "asc" ? "asc" : "desc" },
             });
-            if (!result) return [];
-            return result.map(toNewsResponse);
+
+            return { success: true, data: result.map(toNewsResponse) };
         } catch (error) {
             console.error("Error fetching news:", error);
-            return [];
+            return {
+                success: false,
+                errors: [{ err: "server", message: "Gagal mengambil berita" }],
+            };
         }
     }
 
     // add news
-    static async create(req: NewsRequest): Promise<NewsResponse | null | { errors: { err: string, message: string }[] }> {
+    static async create(req: NewsRequest): Promise<ServiceResult<NewsResponse>> {
         try {
             req = NewsValidation.CREATE.parse(req);
             const news = await prisma?.news.create({
@@ -34,42 +37,42 @@ export class NewsService {
                     description: req.description
                 }
             });
-            return toNewsResponse(news);
+            return { success: true, data: toNewsResponse(news) };
         } catch (error) {
             if (error instanceof ZodError) {
                 //  handle error zod error
-                const errors = error.issues.map(err => ({
-                    err: err.path.join('.'),
-                    message: err.message
-                }))
-                return { errors };
+                return {
+                    success: false, errors: error.issues.map(err => ({
+                        err: err.path.join('.'),
+                        message: err.message
+                    }))
+                }
             }
             console.error("Error creating news:", error);
-            throw new Error("Failed to create news");
+            return {
+                success: false,
+                errors: [{ err: "server", message: "Gagal membuat berita" }],
+            };
         }
     }
 
     // delete news
-    static async delete(id: string): Promise<{ success: boolean } | null> {
+    static async delete(id: string): Promise<{ success: boolean; message?: string }> {
         try {
-            // cek id
             id = NewsValidation.DELETE.parse({ id }).id;
 
-            const result = await prisma?.news.delete({
-                where: {
-                    id: id
-                }
-            })
+            await prisma?.news.delete({ where: { id } });
 
-            if (!result) return null;
 
-            return { success: true };
+            return { success: true, message: "News deleted successfully" };
+
         } catch (error) {
             if (error instanceof ZodError) {
-                return { success: false };
+                return { success: false, message: "Invalid ID" };
             }
             console.error("Error deleting news:", error);
-            return null;
+            return { success: false, message: "news not found" };
         }
     }
+
 }
