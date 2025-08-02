@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { NewsService } from '@/services/news.service';
 import { Prisma } from 'generated/prisma';
+import { success } from 'zod';
 
 export async function DELETE(
     req: NextRequest,
@@ -9,7 +10,7 @@ export async function DELETE(
     const { id } = await context.params; // ✅ harus di-await sekarang
 
     if (!id) {
-        return NextResponse.json({ message: 'ID is required' }, { status: 400 });
+        return NextResponse.json({ errors: 'ID is required' }, { status: 400 });
     }
 
     try {
@@ -17,15 +18,17 @@ export async function DELETE(
 
         if (!result.success) {
             return NextResponse.json(
-                { message: result.message },
+                { success: false, errors: result.message },
                 { status: 404 }
             );
         }
 
         return NextResponse.json(
-            { message: result.message },
-            { status: 200 }
-        );
+            {
+                success: true,
+                status: 200,
+                message: "User created successfully",
+            }, { status: 200 });
 
     } catch (error) {
         console.error('DELETE /news/:id error:', error);

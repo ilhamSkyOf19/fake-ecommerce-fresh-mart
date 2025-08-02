@@ -19,6 +19,7 @@ import { useLoginAnimation } from '../../hooks/UseAnimatedLogin';
 import { useNavigate } from 'react-router';
 import { FaArrowLeftLong } from 'react-icons/fa6';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { UserService } from '../../services/user.service';
 const LoginRegister: FC = () => {
     // state 
     const [login, setLogin] = useState<boolean | null>(null);
@@ -30,6 +31,20 @@ const LoginRegister: FC = () => {
 
     // console.log(login)
 
+    const hadnleSignUp = async () => {
+        if (!name || !email || !username || !password) return alert('Please fill all the fields');
+
+        const response = await UserService.create({ name, email, username, password });
+
+        if (response.success) {
+            setLogin(true);
+        } else {
+            if (response.errors) {
+                alert(response.errors[0].message);
+            }
+        }
+    };
+
 
 
     return (
@@ -37,7 +52,7 @@ const LoginRegister: FC = () => {
             {/* content img */}
             <SwiperImg login={login} />
             {/* content input */}
-            <ContentInput login={login} name={name} setName={setName} email={email} setEmail={setEmail} username={username} setUsername={setUsername} password={password} setPassword={setPassword} agreement={agreement} setAgreement={setAgreement} setLogin={setLogin} />
+            <ContentInput login={login} name={name} setName={setName} email={email} setEmail={setEmail} username={username} setUsername={setUsername} password={password} setPassword={setPassword} agreement={agreement} setAgreement={setAgreement} setLogin={setLogin} handleSignUp={hadnleSignUp} />
 
         </div>
     )
@@ -109,10 +124,11 @@ type ContentInputProps = RegisterProps & {
     login: boolean | null;
     name: string;
     setName: React.Dispatch<React.SetStateAction<string>>;
+    handleSignUp: () => void
 }
 
 // Content Input 
-const ContentInput: FC<ContentInputProps> = ({ login, name, setName, email, setEmail, username, setUsername, password, setPassword, agreement, setAgreement, setLogin }) => {
+const ContentInput: FC<ContentInputProps> = ({ login, name, setName, email, setEmail, username, setUsername, password, setPassword, agreement, setAgreement, setLogin, handleSignUp }) => {
 
     // animated
     const { animateClass, showLogin } = useLoginAnimation(login);
@@ -132,7 +148,7 @@ const ContentInput: FC<ContentInputProps> = ({ login, name, setName, email, setE
                         <p className='text-sm font-semibold group-hover:text-primary-matcha transition-all duration-200 ease-in-out'>Back</p>
                     </button>
                 </div>
-                <Register name={name} setName={setName} email={email} setEmail={setEmail} username={username} setUsername={setUsername} password={password} setPassword={setPassword} agreement={agreement} setAgreement={setAgreement} setLogin={setLogin} showLogin={showLogin} />
+                <Register name={name} setName={setName} email={email} setEmail={setEmail} username={username} setUsername={setUsername} password={password} setPassword={setPassword} agreement={agreement} setAgreement={setAgreement} setLogin={setLogin} showLogin={showLogin} handleSignUp={() => { handleSignUp() }} />
             </div>
 
         </>

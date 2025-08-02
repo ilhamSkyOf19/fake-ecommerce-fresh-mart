@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { ProductService } from '@/services/product.service'
+import { success } from 'zod';
 
 export async function GET(
     req: NextRequest,
@@ -12,7 +13,7 @@ export async function GET(
 
         // cek response
         if (!response.success) {
-            return NextResponse.json({ messege: response.errors }, { status: 400 })
+            return NextResponse.json({ success: false, errors: response.errors }, { status: 400 })
         }
 
         return NextResponse.json({

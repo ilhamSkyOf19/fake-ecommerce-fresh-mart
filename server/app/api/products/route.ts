@@ -1,6 +1,7 @@
 import { ProductRequest } from "@/models/product-model";
 import { ProductService } from "@/services/product.service";
 import { NextRequest, NextResponse } from "next/server";
+import { success } from "zod";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
@@ -15,7 +16,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         // Cek error
         if (!response.success) {
             return NextResponse.json(
-                { messege: response.errors },
+                { success: false, errors: response.errors },
                 { status: 400 });
         }
 
@@ -29,7 +30,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
     } catch (error) {
         return NextResponse.json({
-            error: 'Internal Server Error'
+            errors: 'Internal Server Error'
         }, { status: 500 });
     }
 }

@@ -17,10 +17,11 @@ export type RegisterProps = {
     setAgreement: (value: boolean) => void
     setLogin: (value: boolean) => void
     showLogin?: boolean | null
+    handleSignUp: () => void
 }
 
 
-const Register: FC<RegisterProps> = ({ name, setName, email, setEmail, username, setUsername, password, setPassword, agreement, setAgreement, setLogin, showLogin }) => {
+const Register: FC<RegisterProps> = ({ name, setName, email, setEmail, username, setUsername, password, setPassword, agreement, setAgreement, setLogin, showLogin, handleSignUp }) => {
     return (
         <div className='h-full w-[60%] pt-3.5 flex flex-col justify-start items-start '>
             {/* title */}
@@ -74,14 +75,14 @@ const Register: FC<RegisterProps> = ({ name, setName, email, setEmail, username,
                     )
                 }
                 {/* sign up / sign in */}
-                <button className='w-full bg-primary-matcha text-white py-3 rounded-full font-semibold text-center text-xs hover:bg-primary-matcha/80 transition-all duration-200 ease-in-out capitalize'>sign {showLogin ? 'in' : 'up'}</button>
+                <button className='w-full bg-primary-matcha text-white py-3 rounded-full font-semibold text-center text-xs hover:bg-primary-matcha/80 transition-all duration-200 ease-in-out capitalize' onClick={() => { showLogin ? handleSignUp() : handleSignUp() }}>sign {showLogin ? 'in' : 'up'}</button>
 
                 {/* login / register */}
                 <div className='w-full flex flex-row justify-start items-center gap-1.5'>
-                    <p className='text-to-small text-slate-700 capitalize'>{showLogin ? 'dont have an account' : 'already have an account'} </p>
+                    <p className='text-to-small text-slate-700 capitalize'>{showLogin ? 'dont have an account?' : 'already have an account?'} </p>
 
                     {/* button */}
-                    <button type='button' className='text-primary-matcha text-to-small font-semibold cursor-pointer capitalize' onClick={() => showLogin === null ? setLogin(true) : showLogin ? setLogin(false) : setLogin(true)}>{showLogin === null ? 'register' : showLogin ? 'login' : 'register'}</button>
+                    <button type='button' className='text-primary-matcha text-to-small font-semibold cursor-pointer capitalize' onClick={() => showLogin === null ? setLogin(true) : showLogin ? setLogin(false) : setLogin(true)}>{showLogin === null ? 'login' : showLogin ? 'register' : 'login'}</button>
                 </div>
             </div>
         </div>

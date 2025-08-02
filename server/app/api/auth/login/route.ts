@@ -4,21 +4,23 @@ import { AuthService } from "@/services/auth.service";
 import { getIronSession } from "iron-session";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function POST(req: NextRequest, res: NextResponse): Promise<NextResponse> {
+export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
-
-        // get body
+        // Ambil body request
         const body = await req.json() as UserRequest;
-        // login
+
+        // Login service
         const result = await AuthService.login(body);
 
-
-        // cek result 
+        // Jika gagal login
         if (!result.success) {
-            return NextResponse.json(result, { status: 401 });
+            return NextResponse.json(
+                { success: false, errors: result.errors }, // ✅ konsisten pakai errors
+                { status: 400 }
+            );
         }
 
-        // save session
+        // Simpan session
         const res = new NextResponse();
         const session = await getIronSession<SessionData>(req, res, sessionOptions);
 
@@ -26,14 +28,24 @@ export async function POST(req: NextRequest, res: NextResponse): Promise<NextRes
         session.email = result.data.email;
         await session.save();
 
-        // berhasil
-        return NextResponse.json(result, { status: 200, headers: res.headers });
-
-
-
+        // Jika berhasil login
+        return NextResponse.json(
+            {
+                success: true,
+                message: "Login successful",
+                data: result.data
+            },
+            { status: 200, headers: res.headers }
+        );
 
     } catch (error) {
         console.error(error);
-        return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+        return NextResponse.json(
+            {
+                success: false,
+                errors: [{ err: "server", message: "Internal Server Error" }] // ✅ konsisten
+            },
+            { status: 500 }
+        );
     }
 }

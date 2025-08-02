@@ -1,4 +1,4 @@
-import { toUserResponse, UserLogin, UserRequest, UserResponse } from "@/models/user-model";
+import { toUserResponse, UserRequest, UserResponse } from "@/models/user-model";
 import { UserValidation } from "@/validation/user-validation";
 import { ZodError } from "zod";
 import { prisma } from "@/applications/prismaClient";

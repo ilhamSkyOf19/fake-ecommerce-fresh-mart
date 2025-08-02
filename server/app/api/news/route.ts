@@ -10,7 +10,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
 
         if (!response.success) {
             return NextResponse.json(
-                { message: response.errors },
+                { success: false, errors: response.errors },
                 { status: 400 }
             );
         }
@@ -28,7 +28,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     } catch (error) {
         console.error(error);
         return NextResponse.json(
-            { message: 'Internal Server Error' },
+            { errors: 'Internal Server Error' },
             { status: 500 }
         );
     }

@@ -7,9 +7,12 @@ export async function GET(req: NextRequest) {
     const session = await getIronSession<SessionData>(req, res, sessionOptions);
 
     if (!session.id) {
-        return NextResponse.json({ message: 'Unauthorized' }, { status: 401 })
+        return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 })
     }
 
-    return NextResponse.json({ message: 'Authorized', data: { id: session.id, email: session.email } }, { status: 200 })
+    return NextResponse.json({
+        success: true,
+        message: 'Authorized', data: { id: session.id, email: session.email }
+    }, { status: 200 })
 
 }

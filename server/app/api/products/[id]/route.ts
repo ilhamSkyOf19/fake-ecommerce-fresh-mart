@@ -1,5 +1,6 @@
 import { ProductService } from "@/services/product.service";
 import { NextRequest, NextResponse } from "next/server";
+import { success } from "zod";
 
 
 export async function DELETE(
@@ -15,12 +16,14 @@ export async function DELETE(
 
         if (response.success) {
             return NextResponse.json(
-                { message: response.message },
-                { status: 200 }
-            )
+                {
+                    success: true,
+                    status: 200,
+                    message: "Product deleted successfully",
+                }, { status: 200 });
         } else {
             return NextResponse.json(
-                { message: response.message },
+                { success: false, errors: response.message },
                 { status: 404 }
             )
         }
@@ -28,7 +31,7 @@ export async function DELETE(
     } catch (error) {
         console.error(error);
         return NextResponse.json(
-            { error: 'Internal Server Error' },
+            { errors: 'Internal Server Error' },
             { status: 500 }
         );
     }

@@ -1,6 +1,7 @@
 import { UserService } from "@/services/user.service";
 import argon2 from "argon2";
 import { NextRequest, NextResponse } from "next/server";
+import { success } from "zod";
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
     try {
@@ -22,7 +23,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
         // cek error 
         if (!response.success) {
             return NextResponse.json(
-                { messege: response.errors },
+                { success: false, errors: response.errors },
                 { status: 400 });
         }
 
@@ -38,7 +39,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
     } catch (error) {
         console.error(error);
         return NextResponse.json(
-            { error: 'Internal Server Error' },
+            { errors: 'Internal Server Error' },
             { status: 500 });
     }
 }

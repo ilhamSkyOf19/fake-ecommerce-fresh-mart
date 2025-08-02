@@ -1,8 +1,8 @@
 import type { FC } from "react"
-import type { CategoryProps } from "../../model/category"
 import { PiBread, PiCarrotLight, PiWine } from "react-icons/pi"
 import { IoFastFoodOutline } from "react-icons/io5"
 import { RiSeedlingLine } from "react-icons/ri"
+import type { CategoryProps } from "../../types/types"
 
 const CategoryComponent: FC<CategoryProps> = ({ text1, text2, type }) => {
     return (
