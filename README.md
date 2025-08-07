@@ -44,6 +44,10 @@ Perkembangan dilakukan secara bertahap dengan fokus pada performa, desain UX, da
 
 ---
 
+## Reference Design
+- https://preview.themeforest.net/item/efway-food-store-woocommerce-wordpress-theme/full_screen_preview/27965754
+
+---
 ## 📩 Kontak
 
 Untuk pertanyaan, kolaborasi, atau masukan:
