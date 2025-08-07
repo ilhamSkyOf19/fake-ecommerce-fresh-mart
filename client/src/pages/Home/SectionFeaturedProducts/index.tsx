@@ -43,6 +43,8 @@ const SectionFeaturedProducts: FC = () => {
     // category product
     const categorySelected: string[] = ['organic', 'fruits', 'seafood', 'wine & beer', 'bakery']
 
+    console.log(loading);
+
 
 
 

@@ -10,7 +10,7 @@ type LazyImageProps = {
 export const LazyImage: FC<LazyImageProps> = ({ src, alt, className }: LazyImageProps) => {
     const { ref, inView } = useInView({
         triggerOnce: true,
-        threshold: 1,
+        threshold: 0.5,
     });
 
     const [loaded, setLoaded] = useState(false);

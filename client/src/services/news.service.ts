@@ -6,7 +6,7 @@ export class NewsService {
     static async getAll(take: string, order: 'asc' | 'desc'): Promise<NewsResponse[] | null> {
         try {
             const response = await API.get(`/news?take=${take}&order=${order}`);
-            return response.data.map(toNewsResponse)
+            return response.data.data.map(toNewsResponse)
         } catch (error) {
             console.error('Failed to fetch news:', error);
             return null;

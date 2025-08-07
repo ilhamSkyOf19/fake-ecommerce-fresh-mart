@@ -31,6 +31,8 @@ Website ini menyuguhkan desain estetika dengan **efek parallax**, memperkuat cit
 ## 🧩 Fitur Utama
 
 - Dalam Pengembangan
+📽️ [Tonton demo Fresh Mart di Google Drive (Masih Dalam Pengembangan)](https://drive.google.com/file/d/1tKxzIjl-eFxXqaw6c96R0aUrfBhU9EPH/view)
+
 
 ---
 

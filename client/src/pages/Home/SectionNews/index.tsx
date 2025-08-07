@@ -7,7 +7,7 @@ import LoadingCardProduct from "../../../components/LoadingCardProduct";
 
 const SectionNews: FC = () => {
     // state 
-    const [news, setNews] = useState<NewsResponse[] | null>(null);
+    const [news, setNews] = useState<NewsResponse[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     // fetch news data (mocked for now)
@@ -51,7 +51,7 @@ const SectionNews: FC = () => {
 
 
 type ContainerCardsProps = {
-    news: NewsResponse[] | null;
+    news: NewsResponse[];
     loading: boolean;
 }
 // container card
@@ -66,9 +66,13 @@ const ContainerCards: FC<ContainerCardsProps> = ({ news, loading }) => {
                         <LoadingCardProduct key={index} />
                     ))
                 ) : (
-                    news?.map((item, index) => (
-                        <CardsNews key={index} item={item} />
-                    ))
+                    news?.length > 0 ? (
+                        news?.map((item, index) => (
+                            <CardsNews key={index} item={item} />
+                        ))
+                    ) : (
+                        <p className="text-sm text-slate-500">No news found.</p>
+                    )
                 )
             }
         </div>

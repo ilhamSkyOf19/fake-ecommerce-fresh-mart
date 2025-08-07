@@ -10,7 +10,7 @@ export class ProductService {
     static async getByCategory(category: string): Promise<ProductResponse[] | null> {
         try {
             const result = await API.get(`/products/category/${category}`);
-            return result.data.map(toProductResponse);
+            return result.data.data.map(toProductResponse);
         } catch (error) {
             throw new Error('Failed to fetch products by category');
         }

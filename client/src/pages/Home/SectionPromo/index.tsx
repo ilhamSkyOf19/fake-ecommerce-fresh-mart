@@ -21,7 +21,7 @@ const SectionPromo: FC = () => {
 
 
     // set timer 
-    const { days, hours, minutes, seconds } = useTimer(new Date('2025-08-01T00:00:00'))
+    const { days, hours, minutes, seconds } = useTimer(new Date('2025-08-12T00:00:00'))
 
 
     return (
