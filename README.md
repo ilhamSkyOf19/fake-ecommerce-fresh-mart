@@ -8,10 +8,10 @@ Fresh Mart adalah platform digital modern yang menghadirkan pengalaman belanja p
 
 Fresh Mart dibangun menggunakan kombinasi teknologi modern dan solid yang menjamin performa optimal dan skalabilitas jangka panjang:
 
-- **Frontend**: React.js dengan efek **Parallax** interaktif untuk tampilan dinamis dan user-friendly.
-- **Backend API**: Dibangun menggunakan **Next.js** (API Routes) sebagai jembatan modern untuk REST API.
-- **Routing & Services**: Diperkuat oleh **Express.js**, memberikan struktur modular dan clean untuk manajemen route & service.
-- **Database**: **MongoDB Atlas** dengan ORM modern **Prisma**, menjadikan manajemen data lebih efisien dan scalable.
+- **Frontend**: React.js dengan **TypeScript**, dilengkapi efek **Parallax** interaktif untuk tampilan yang dinamis dan user-friendly.
+- **Backend**: Dibangun menggunakan **Next.js App Router**, memanfaatkan arsitektur fullstack modern untuk API dan server-side logic.
+- **Routing & Services**: Diorganisasi secara modular menggunakan struktur bawaan Next.js yang clean dan scalable.
+- **Database**: **MongoDB Atlas** dengan ORM modern **Prisma**, menjadikan manajemen data lebih efisien, fleksibel, dan scalable.
 
 ---
 
